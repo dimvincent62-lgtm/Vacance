@@ -1,0 +1,21 @@
+<!doctype html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>
+<title>Les aventures d'Ethan, Anaelle et Romy</title>
+<style>
+body{margin:0;background:#111;color:#fff;font-family:Arial;text-align:center}
+img{max-width:100vw;max-height:90vh;object-fit:contain}
+button{font-size:18px;padding:10px 16px;margin:8px}
+</style></head><body>
+<h2>Les aventures d'Ethan, Anaelle et Romy</h2>
+<img id='img'><br>
+<button onclick='prev()'>◀</button><span id='num'></span><button onclick='next()'>▶</button>
+<script>
+const pages=[...Array(9).keys()].map(i=>String(i).padStart(3,'0')+'.jpg');
+let p=0;
+function show(){img.src=pages[p];num.textContent='Page '+p+' / 8';}
+function next(){if(p<pages.length-1){p++;show();}}
+function prev(){if(p>0){p--;show();}}
+let sx=0;
+ontouchstart=e=>sx=e.touches[0].clientX;
+ontouchend=e=>{let d=e.changedTouches[0].clientX-sx;if(d<-40)next();if(d>40)prev();}
+show();
+</script></body></html>
